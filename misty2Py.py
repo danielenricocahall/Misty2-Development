@@ -238,7 +238,10 @@ class Robot:
             return " TimeOfFlight not subscribed, use the command robot_name.subscribe(\"TimeOfFlight\")"
 
     def faceRec(self):
-        data = json.loads(self.face_recognition_instance.data)
+        try:
+            data = json.loads(self.face_recognition_instance.data)
+        except AttributeError:
+            print("No face recognition instance")
         try:
             out = "{ \"personName\" : \"" + data["message"]["personName"] + "\", \"distance\" : \"" + str(data["message"]["distance"]) + "\", \"elevation\" :\"" + str(data["message"]["elevation"]) + "\"}"
             return(json.loads(out))
