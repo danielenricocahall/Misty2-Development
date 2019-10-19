@@ -106,18 +106,15 @@ class Robot:
         requests.post('http://'+self.ip+'/api/serial',json={"Message": message})
 
     def populateImages(self):
-        self.images_saved = []
         resp = requests.get('http://'+self.ip+'/api/images/list')
         self.images_saved = [out for out in resp.json()['result']]
 
 
     def populateAudio(self):
-        self.audio_saved = []
         resp = requests.get('http://'+self.ip+'/api/audio/list')
         self.audio_saved = [out for out in resp.json()['result']]
 
     def populateLearnedFaces(self):
-        self.faces_saved = []
         resp = requests.get('http://'+self.ip+'/api/faces')
         self.faces_saved = [out for out in resp.json()["result"]]
 
